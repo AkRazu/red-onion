@@ -1,13 +1,15 @@
 import React from "react";
-import logo from '../../../images/logo2.png'
+import logo from "../../../images/logo2.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-white">
         <div className="container">
           <a className="navbar-brand" href="#">
-            <img height={'40px'} src={logo} alt="brand_logo" />
+            <img height={"40px"} src={logo} alt="brand_logo" />
           </a>
           <button
             className="navbar-toggler"
@@ -20,8 +22,20 @@ const Navigation = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <button>login</button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <div className="">
+            <button className="m-0 border-0 bg-white"><FontAwesomeIcon icon={ faCartShopping} />
+            <label><sup className="text-danger fs-5 mx-1">10</sup></label></button>
+              <button className="btn btn-light rounded-pill px-4 mx-2 text-bold">
+                Login
+              </button>
+              <button className="btn btn-danger rounded-pill px-4">
+                Sign up
+              </button>
+            </div>
           </div>
         </div>
       </nav>
