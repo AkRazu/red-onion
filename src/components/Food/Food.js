@@ -15,9 +15,9 @@ const Food = ({ food}) => {
           <img className="product-img" src={image} alt="" />
         </div>
         <div className="card-body">
-            <h4 className="card-title">{title}</h4>
-            <p className="card-text">{description}</p>
-            <h4 className="card-title">${price}</h4>
+            <h4 className="card-title text-center">{title}</h4>
+            <p className="card-text text-center">{description.slice(0,30)}</p>
+            <h4 className="card-title text-center">${price}</h4>
             </div>
       </div>
     </div>

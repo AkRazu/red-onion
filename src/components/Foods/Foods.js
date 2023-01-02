@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Food from "../Food/Food";
+import SeeMore from "../SeeMore/SeeMore";
 
 const Foods = () => {
   const [foods, setFoods] = useState([]);
@@ -25,8 +26,8 @@ const Foods = () => {
           >
             <span
               to="breakfast"
-              className={
-               `p-0 ${ type === "Breakfast" ? "active-type-link" : "nav-link"}`
+              className={ 
+               ` p-0 ${ type === "Breakfast" ? "active-type-link" : "nav-link"}`
               }
             >
               Breakfast
@@ -38,8 +39,8 @@ const Foods = () => {
           >
             <span
               to="breakfast"
-              className={
-               `p-0 ${ type === "Lunch" ? "active-type-link " : "nav-link"}`
+              className={ 
+               ` p-0 ${ type === "Lunch" ? "active-type-link " : "nav-link"}`
               }
             >
               Lunch
@@ -51,8 +52,8 @@ const Foods = () => {
           >
             <span
               to="breakfast"
-              className={
-                `p-0 ${type === "Dinner" ? "active-type-link" : "nav-link"}`
+              className={ 
+                 `p-0 ${type === "Dinner" ? "active-type-link" : "nav-link"}`
               }
             >
               Dinner
@@ -71,8 +72,9 @@ const Foods = () => {
         }
       </div>
       <div className="d-flex justify-content-center my-5">
-        <button className="btn btn-secondary">Checkout Your Food</button>
+        <button className="btn btn-secondary px-4" disabled>Checkout Your Food</button>
       </div>
+      <SeeMore/>
     </div>
   );
 };
