@@ -5,6 +5,7 @@ import Navigation from "./components/Header/Navigation/Navigation";
 import FoodDetails from "./components/FoodDetails/FoodDetails";
 import Foods from "./components/Foods/Foods";
 import Footer from "./components/Footer/Footer";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Headers />} />
         {/* <Route path="/foods" element={<Foods/>}></Route> */}
-        <Route path="/mill/:keys" element={<FoodDetails ></FoodDetails>}></Route>
+        <Route path="/mill/:keys" element={<FoodDetails ></FoodDetails>}
+        ></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
       </Routes>
       <Footer/>
     </div>

@@ -31,7 +31,7 @@ const Navigation = () => {
             <div className="">
             <button className="m-0 border-0 bg-white"><FontAwesomeIcon icon={ faCartShopping} />
             <label><sup className="text-danger fs-5 mx-1">10</sup></label></button>
-              <button className="btn btn-outline-danger rounded-pill px-4 mx-2 text-bold">
+              <button className="btn bt-light rounded-pill px-4 mx-2 text-bold">
                 Login
               </button>
               <button className="btn btn-danger rounded-pill px-4">
