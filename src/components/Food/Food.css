@@ -1,0 +1,23 @@
+.product-img{
+    width: 300px;
+}
+.main-card:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.active-type-link {
+  /* content: "";
+  width: 100%;
+  margin: 0 auto;
+  height: 2px;
+  background-color: rgb(255, 0, 43);
+  display: block; */
+  margin: 0px 10px;
+  border-bottom: 1px solid red;
+  color: red;
+  cursor: pointer;
+}
+.nav-link {
+  margin: 0px 10px !important;
+  color: black !important;
+  cursor: pointer;
+}
