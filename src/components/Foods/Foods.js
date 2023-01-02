@@ -70,6 +70,9 @@ const Foods = () => {
         </div>
         }
       </div>
+      <div className="d-flex justify-content-center my-5">
+        <button className="btn btn-secondary">Checkout Your Food</button>
+      </div>
     </div>
   );
 };

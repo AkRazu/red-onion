@@ -4,6 +4,7 @@ import { Route, Routes, useParams } from "react-router-dom";
 import Navigation from "./components/Header/Navigation/Navigation";
 import FoodDetails from "./components/FoodDetails/FoodDetails";
 import Foods from "./components/Foods/Foods";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         {/* <Route path="/foods" element={<Foods/>}></Route> */}
         <Route path="/mill/:keys" element={<FoodDetails ></FoodDetails>}></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }

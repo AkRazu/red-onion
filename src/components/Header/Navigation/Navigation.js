@@ -2,13 +2,17 @@ import React from "react";
 import logo from "../../../images/logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const navigation = useNavigate();
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-white">
         <div className="container">
-            <img height={"40px"} src={logo} alt="brand_logo" />
+           <Link to='/'>
+           <img className="" height={"40px"} src={logo} alt="brand_logo" />
+           </Link>
           <button
             className="navbar-toggler"
             type="button"

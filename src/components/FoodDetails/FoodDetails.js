@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useFoodsData from "../../useFoodsData/useFoodsData";
 import FoodsItem from "../FoodsItem/FoodsItem";
 
+
 const FoodDetails = () => {
   const { keys } = useParams();
   const [foods, setFoods] = useFoodsData();

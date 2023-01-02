@@ -1,0 +1,11 @@
+footer{
+    min-height: 300px;
+}
+.links{
+    text-decoration: none;
+    color: #fff;
+}
+li{
+    
+    margin: 10px 0;
+}
