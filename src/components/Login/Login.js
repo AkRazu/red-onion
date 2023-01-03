@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import logo from "../../images/logo2.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
   useSendPasswordResetEmail,
@@ -12,14 +12,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [pass, setPass] = useState();
   const emailRef = useRef("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   let errorElement;
   if (error || error1) {
     errorElement = error1 ? (
@@ -29,7 +29,7 @@ const Login = () => {
     );
   }
   if (user || user1) {
-    navigate("/");
+    navigate(from, { replace: true });
   }
   const handelForgot = async () => {
     const email = emailRef.current.value;
