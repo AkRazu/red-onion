@@ -1,23 +1,20 @@
-import React from "react";
-import "./SignUp.css";
+import React from 'react';
 import logo from "../../images/logo2.png";
 import { Link } from "react-router-dom";
-
-const SignUp = () => {
-  return (
-    <div className="bg-main">
+const Login = () => {
+    return (
+        <div>
+            <div className="bg-main">
       <div className="bg-light p-5 rounded shadow-sm">
         <div className="d-flex justify-content-center my-4">
         <img height={50} src={logo} alt="" />
         </div>
         <form action="">
-          <input className="form-control " type="text" placeholder="Name" />
           <input className="form-control " type="email" name="" id="" placeholder="Email" />
           <input className="form-control " type="password" name="" id="" placeholder="Password" />
-          <input className="form-control " type="password" name="" id="" placeholder="Confirm Password" />
           <button className="sign-up">Sign Up</button>
         </form>
-        <Link to='/login' className="an-account">Already have an account ?</Link>
+        <Link to='/signup' className="an-account">Don't have an account ?</Link>
         <div className="d-flex align-items-center">
           <div className="or-div"></div>
           <p className="mx-2 text-secondary">or</p>
@@ -59,11 +56,12 @@ const SignUp = () => {
 	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
             ></path>
           </svg>
-          <span class="ms-2">Sign Up With Google</span>
+          <span class="ms-2">Sign With Google</span>
         </div>
       </div>
     </div>
-  );
+        </div>
+    );
 };
 
-export default SignUp;
+export default Login;

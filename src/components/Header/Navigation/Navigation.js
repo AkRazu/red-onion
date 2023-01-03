@@ -34,7 +34,7 @@ const Navigation = () => {
               <button className="btn bt-light rounded-pill px-4 mx-2 text-bold">
                 Login
               </button>
-              <button className="btn btn-danger rounded-pill px-4">
+              <button onClick={()=>navigation('/signup')} className="btn btn-danger rounded-pill px-4">
                 Sign up
               </button>
             </div>
