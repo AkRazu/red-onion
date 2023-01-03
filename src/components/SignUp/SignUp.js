@@ -41,7 +41,7 @@ const SignUp = () => {
       if (password === confirmPassword) {
         createUserWithEmailAndPassword(email, password);
         setPass("");
-        toast('✔️ Login Success !!');
+        toast('✔️ Sign up Success !!');
         
       } else {
         toast('⛔ Password not confirm !!');
@@ -108,7 +108,7 @@ const SignUp = () => {
             </label>
           </div>
 
-          <button className="sign-up">Sign Up</button>
+          <button className="w-100 btn btn-danger mt-2 btn-lg">Sign Up</button>
         </form>
         {errorElement}
         <p className="text-danger my-1">{pass} </p>

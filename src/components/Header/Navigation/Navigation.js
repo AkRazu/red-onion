@@ -14,7 +14,6 @@ const Navigation = () => {
     signOut();
     navigation('/login')
   }
-  console.log(user.email);
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-white">
