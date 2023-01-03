@@ -14,14 +14,19 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const location = useLocation();
   const emailRef = useRef("");
-  const [signInWithEmailAndPassword, error] =
-    useSignInWithEmailAndPassword(auth);
+
+  const [
+    signInWithEmailAndPassword,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+    
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   const [signInWithGoogle, error1] = useSignInWithGoogle(auth);
-  
-  
+
   let errorElement;
   if (error || error1) {
     errorElement = error1 ? (
@@ -31,13 +36,11 @@ const Login = () => {
     );
   }
 
-  const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   if (user) {
     navigate(from, { replace: true });
   }
-  console.log(location);
-  
+
   const handelForgot = async () => {
     const email = emailRef.current.value;
     if (email) {
@@ -52,12 +55,8 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-
-    console.log(email, password);
-    if (!error) {
-      signInWithEmailAndPassword(email, password);
-      toast("✔️ Login Success !!");
-    }
+    
+    signInWithEmailAndPassword(email, password);
   };
   return (
     <div>
@@ -93,6 +92,7 @@ const Login = () => {
               Don't have an account ?
             </Link>
             <Link
+              style={{ textDecoration: "none" }}
               onClick={() => handelForgot()}
               className="text-danger d-block my-1"
             >
