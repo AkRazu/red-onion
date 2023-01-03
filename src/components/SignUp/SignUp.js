@@ -41,11 +41,10 @@ const SignUp = () => {
       if (password === confirmPassword) {
         createUserWithEmailAndPassword(email, password);
         setPass("");
-        toast('✔️ Sign up Success !!');
+        toast.success('Sign up Success !!');
         
       } else {
-        toast('⛔ Password not confirm !!');
-        setPass("Password not confirm !!");
+        toast.error('Password not same !!');
       }
     }else{
       setPass("");

@@ -16,7 +16,6 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Headers />} />
-        {/* <Route path="/foods" element={<Foods/>}></Route> */}
         <Route path="/mill/:keys" element={
           <RequireAuth>
             <FoodDetails ></FoodDetails>

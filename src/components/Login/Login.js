@@ -3,6 +3,7 @@ import logo from "../../images/logo2.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
+  useAuthState,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,14 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
   const emailRef = useRef("");
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, error] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
-  const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const [signInWithGoogle, error1] = useSignInWithGoogle(auth);
+  
+  
   let errorElement;
   if (error || error1) {
     errorElement = error1 ? (
@@ -28,17 +30,22 @@ const Login = () => {
       <p className="text-danger">Error: {error?.message}</p>
     );
   }
-  if (user || user1) {
+
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  if (user) {
     navigate(from, { replace: true });
   }
+  console.log(location);
+  
   const handelForgot = async () => {
     const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
 
-      toast("Sent email");
+      toast.success("Sent email");
     } else {
-      toast("Enter you email address");
+      toast.error("Enter you email address");
     }
   };
   const handelSignUp = (event) => {
