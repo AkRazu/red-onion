@@ -89,7 +89,7 @@ const Login = () => {
               onClick={() => handelForgot()}
               className="text-danger d-block my-1"
             >
-              Forgot Password ?
+              Forgot Password
             </Link>
           </div>
           {errorElement}

@@ -7,6 +7,8 @@ import Foods from "./components/Foods/Foods";
 import Footer from "./components/Footer/Footer";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
+import NotFound from "./components/NotFound/NotFound";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -15,10 +17,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Headers />} />
         {/* <Route path="/foods" element={<Foods/>}></Route> */}
-        <Route path="/mill/:keys" element={<FoodDetails ></FoodDetails>}
+        <Route path="/mill/:keys" element={
+          <RequireAuth>
+            <FoodDetails ></FoodDetails>
+          </RequireAuth>
+        }
         ></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="*" element={<NotFound/>}></Route>
       </Routes>
       <Footer/>
     </div>
