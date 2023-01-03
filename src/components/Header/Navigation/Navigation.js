@@ -1,11 +1,20 @@
 import React from "react";
 import logo from "../../../images/logo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import auth from "../../../firebase.init";
 
 const Navigation = () => {
+  const [signOut, loading, error] = useSignOut(auth);
+  const [user] = useAuthState(auth);
   const navigation = useNavigate();
+  const handelSignOut=()=>{
+    signOut();
+    navigation('/login')
+  }
+  console.log(user.email);
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-white">
@@ -30,13 +39,24 @@ const Navigation = () => {
           >
             <div className="">
             <button className="m-0 border-0 bg-white"><FontAwesomeIcon icon={ faCartShopping} />
-            <label><sup className="text-danger fs-5 mx-1">10</sup></label></button>
-              <button className="btn bt-light rounded-pill px-4 mx-2 text-bold">
-                Login
-              </button>
-              <button onClick={()=>navigation('/signup')} className="btn btn-danger rounded-pill px-4">
-                Sign up
-              </button>
+            <label><sup className="text-danger fs-5 mx-1">0</sup></label></button>
+            <span  className="cursor">
+            {
+              user ? <span onClick={handelSignOut} style={{cursor:'pointer'}}>
+                <FontAwesomeIcon icon={ faRightFromBracket} />
+                <label style={{cursor:'pointer'}} htmlFor="">Logout</label>
+              </span> :
+              <span>
+                <button onClick={()=>navigation('/login')} className="btn bt-light rounded-pill px-4 mx-2 text-bold">
+              Login
+            </button>
+            <button onClick={()=>navigation('/signup')} className="btn btn-danger rounded-pill px-4">
+              Sign up
+            </button>
+              </span>
+            }
+            </span>
+              
             </div>
           </div>
         </div>

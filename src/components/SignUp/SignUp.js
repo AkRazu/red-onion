@@ -1,29 +1,130 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignUp.css";
 import logo from "../../images/logo2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [pass, setPass] = useState();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+
+  let errorElement;
+  if (error || error1) {
+    errorElement = error1 ? (
+      <p className="text-danger">Error: {error1?.message}</p>
+    ) : (
+      <p className="text-danger">Error: {error?.message}</p>
+    );
+  }
+  if (user || user1) {
+    navigate("/");
+    
+  }
+  const handelSignUp = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const confirmPassword = event.target.confirmPassword.value;
+    const agree = event.target.checkbox.checked;
+    if(agree){
+      if (password === confirmPassword) {
+        createUserWithEmailAndPassword(email, password);
+        setPass("");
+        toast('✔️ Login Success !!');
+        
+      } else {
+        toast('⛔ Password not confirm !!');
+        setPass("Password not confirm !!");
+      }
+    }else{
+      setPass("");
+    }
+
+    console.log(email, password);
+    
+  };
   return (
-    <div className="bg-main">
+    <div>
+      
+      <div className="bg-main">
+
+      
       <div className="bg-light p-5 rounded shadow-sm">
         <div className="d-flex justify-content-center my-4">
-        <img height={50} src={logo} alt="" />
+          <img height={50} src={logo} alt="" />
         </div>
-        <form action="">
-          <input className="form-control " type="text" placeholder="Name" />
-          <input className="form-control " type="email" name="" id="" placeholder="Email" />
-          <input className="form-control " type="password" name="" id="" placeholder="Password" />
-          <input className="form-control " type="password" name="" id="" placeholder="Confirm Password" />
+        <form onSubmit={handelSignUp} action="">
+          <input
+            className="form-control "
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+          />
+          <input
+            className="form-control "
+            type="email"
+            name="email"
+            id=""
+            placeholder="Email"
+            required
+          />
+          <input
+            className="form-control "
+            type="password"
+            name="password"
+            id=""
+            placeholder="Password"
+            required
+          />
+          <input
+            className="form-control "
+            type="password"
+            name="confirmPassword"
+            id=""
+            placeholder="Confirm Password"
+          />
+          <div className="form-check mt-2">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="checkbox"
+              value=""
+              id="defaultCheck1"
+            />
+            <label className="form-check-label" for="defaultCheck1" htmlFor="">
+              Accept Terms and Conditions
+            </label>
+          </div>
+
           <button className="sign-up">Sign Up</button>
         </form>
-        <Link to='/login' className="an-account">Already have an account ?</Link>
+        {errorElement}
+        <p className="text-danger my-1">{pass} </p>
+        <Link to="/login" className="an-account">
+          Already have an account ?
+        </Link>
         <div className="d-flex align-items-center">
           <div className="or-div"></div>
           <p className="mx-2 text-secondary">or</p>
           <div className=" or-div"></div>
         </div>
-        <div style={{cursor:'pointer'}}  class="d-flex justify-content-center align-items-center  border rounded-lg w-full py-3">
+        <div
+          onClick={() => signInWithGoogle()}
+          style={{ cursor: "pointer" }}
+          class="d-flex justify-content-center align-items-center  border rounded-lg w-full py-3"
+        >
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -33,7 +134,6 @@ const SignUp = () => {
             y="0px"
             viewBox="0 0 48 48"
             enable-background="new 0 0 48 48"
-            
             height="30"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -62,6 +162,8 @@ const SignUp = () => {
           <span class="ms-2">Sign Up With Google</span>
         </div>
       </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

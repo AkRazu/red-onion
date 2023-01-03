@@ -34,7 +34,7 @@ form > input::placeholder{
 .an-account{
     text-decoration: none;
     text-align: center;
-    color: #D01638;
+    color: blue;
     display: block;
     margin-top: 5px;
 }
@@ -44,17 +44,3 @@ form > input::placeholder{
     height: 1px;
     background-color: lightgray;
 }
-/* 
-@media screen and (max-width:425px) {
-    form > input{
-        display: block;
-        margin-top: 15px;
-        width: 350px !important;
-        height: 60px;
-        border-radius: 5px;
-        border: none;
-        outline: none;
-        padding: 0px 0px 0px 10px;
-        background-color: #fff;
-    }
-} */

@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from "../../images/logo2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from '../../firebase.init';
+import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 const Login = () => {
+
+    const navigate = useNavigate();
+  const [pass , setPass] = useState();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+
+  let errorElement;
+  if (error||error1) {
+    errorElement = error1? <p className="text-danger">Error: {error1?.message}</p>:<p className="text-danger">Error: {error?.message}</p>;
+  }
+  if (user || user1) {
+    navigate('/')
+  }
+  const handelSignUp = event =>{
+    event.preventDefault();
+    const email=event.target.email.value;
+    const password=event.target.password.value;
+
+    console.log(email,password);
+        signInWithEmailAndPassword(email,password);
+  }
     return (
         <div>
             <div className="bg-main">
@@ -9,18 +34,20 @@ const Login = () => {
         <div className="d-flex justify-content-center my-4">
         <img height={50} src={logo} alt="" />
         </div>
-        <form action="">
-          <input className="form-control " type="email" name="" id="" placeholder="Email" />
-          <input className="form-control " type="password" name="" id="" placeholder="Password" />
+        <form onSubmit={handelSignUp} action="">
+        <input className="form-control " type="email" name="email" id="" placeholder="Email" required/>
+          <input className="form-control " type="password" name="password" id="" placeholder="Password" required/>
+          
           <button className="sign-up">Sign Up</button>
         </form>
+        {errorElement}
         <Link to='/signup' className="an-account">Don't have an account ?</Link>
         <div className="d-flex align-items-center">
           <div className="or-div"></div>
           <p className="mx-2 text-secondary">or</p>
           <div className=" or-div"></div>
         </div>
-        <div style={{cursor:'pointer'}}  class="d-flex justify-content-center align-items-center  border rounded-lg w-full py-3">
+        <div onClick={()=>signInWithGoogle()} style={{cursor:'pointer'}}  class="d-flex justify-content-center align-items-center  border rounded-lg w-full py-3">
           <svg
             stroke="currentColor"
             fill="currentColor"
